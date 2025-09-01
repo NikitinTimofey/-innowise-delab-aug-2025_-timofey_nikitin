@@ -30,8 +30,3 @@ WHERE Department = 'IT'
 ORDER BY EmployeeID;
 
 SELECT * FROM IT_Department_View;
-
-SELECT column_name, data_type 
-FROM information_schema.columns 
-WHERE table_name = 'it_department_view'
-ORDER BY ordinal_position;

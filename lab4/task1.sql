@@ -19,6 +19,9 @@ SET Salary = 65000.00
 WHERE FirstName = 'Alice' AND LastName = 'Smith';
 
 -- 5. Удалить сотрудника, чья LastName — 'Prince'
+DELETE FROM EmployeeProjects 
+WHERE EmployeeID IN (SELECT EmployeeID FROM Employees WHERE LastName = 'Prince');
+
 DELETE FROM Employees 
 WHERE LastName = 'Prince';
 

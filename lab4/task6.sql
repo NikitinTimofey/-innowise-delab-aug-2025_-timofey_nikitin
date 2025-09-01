@@ -32,21 +32,18 @@ FROM Projects
 WHERE EndDate IS NOT NULL
 ORDER BY ProjectID;
 
-BEGIN;
-
-INSERT INTO Employees (FirstName, LastName, Department, Salary, Email)
-VALUES ('Michael', 'Scott', 'Management', 90000.00, 'michael.scott@company.com')
-RETURNING EmployeeID;
-
+WITH new_employee AS (
+    INSERT INTO Employees (FirstName, LastName, Department, Salary, Email)
+    VALUES ('Michael', 'Scott', 'Management', 90000.00, 'michael.scott@company.com')
+    RETURNING EmployeeID
+)
 INSERT INTO EmployeeProjects (EmployeeID, ProjectID, HoursWorked)
 SELECT 
-    (SELECT MAX(EmployeeID) FROM Employees),
+    (SELECT EmployeeID FROM new_employee),
     p.ProjectID,
     80
 FROM Projects p
 WHERE p.ProjectName = 'Website Redesign';
-
-COMMIT;
 
 SELECT 
     e.EmployeeID,

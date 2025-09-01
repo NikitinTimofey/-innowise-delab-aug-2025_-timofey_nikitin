@@ -16,7 +16,6 @@ BEGIN;
 
 INSERT INTO Projects (ProjectName, Budget, StartDate, EndDate) 
 VALUES ('Cloud Migration', 180000.00, '2024-01-15', '2024-12-31')
-RETURNING ProjectID;
 
 INSERT INTO EmployeeProjects (EmployeeID, ProjectID, HoursWorked) 
 VALUES 
